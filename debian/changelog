@@ -1,3 +1,9 @@
+grub-efi-loong64-signed (1.4+2.12-7deepin8) unstable; urgency=medium
+
+  * update postinst, skip case where no /boot/efi/EFI/ directory.
+
+ -- zhouzilong <zhouzilong@uniontech.com>  Tue, 20 Jan 2026 14:43:43 +0800
+
 grub-efi-loong64-signed (1.3+2.12-7deepin8) unstable; urgency=medium
 
   * Update postinst
