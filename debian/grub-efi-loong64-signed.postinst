@@ -18,9 +18,9 @@ case $1 in
     configure)
         bootloader_id="$(config_item GRUB_DISTRIBUTOR | tr A-Z a-z | \
                          cut -d' ' -f1)"
-       	if [ -n "$bootloader_id" ]; then
+       	if [ -n "$bootloader_id" ] && [ -d "/boot/efi/EFI/" ]; then #镜像构建chroot环境没有挂载/boot/efi/EFI/目录，这里跳过grub-install
             grub-install --bootloader-id=$bootloader_id
-	    # loongarch64 生效的EFI路径为：/boot/efi/EFI/BOOT/BOOTLOONGARCH64.EFI， 通过grub-install --removable更新它
+	        # loongarch64 生效的EFI路径为：/boot/efi/EFI/BOOT/BOOTLOONGARCH64.EFI， 通过grub-install --removable更新它
             grub-install --removable
             cp /boot/efi/EFI/BOOT/BOOTLOONGARCH64.EFI /boot/efi/EFI/BOOT/BOOTLOONGARCH.EFI -rf || true
         fi
@@ -30,4 +30,3 @@ esac
 
 
 exit 0
-
